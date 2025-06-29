@@ -3,6 +3,10 @@ languageCode = 'en-us'
 title = 'Laravel Notes'
 theme = 'hugo-book'
 
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
 [params]
   BookTheme = 'auto'
 
