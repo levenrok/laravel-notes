@@ -1,0 +1,9 @@
+baseURL = 'https://levenrok.github.io/laravel-notes/'
+languageCode = 'en-us'
+title = 'Laravel Notes'
+theme = 'hugo-book'
+
+[params]
+  BookTheme = 'auto'
+
+  BookSection = '*'
