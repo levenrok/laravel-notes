@@ -3,12 +3,41 @@
 <head><script src="/laravel-notes/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=laravel-notes/livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content="
+  Laravel Components
+  #
+
+A Component can be defined in the resources/views/components directory.
+components/layout.blade.php:
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&#34;en&#34;&gt;
+&lt;head&gt;
+    &lt;meta charset=&#34;UTF-8&#34;&gt;
+    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&gt;
+    &lt;title&gt;Home Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;a href=&#34;/&#34;&gt;Home&lt;/a&gt;
+        &lt;a href=&#34;/about&#34;&gt;About&lt;/a&gt;
+        &lt;a href=&#34;/contact&#34;&gt;Contact&lt;/a&gt;
+    &lt;/nav&gt;
+    {{ $slot }}
+&lt;/body&gt;
+&lt;/html&gt;
+
+This Component can be referenced in other blade files with the &lt;x- html tag with the file name appended in the end (&lt;x-layout&gt;...&lt;/x-layout&gt;).
+Any content inside the &lt;x-layout&gt; tag will be slotted inside the &rsquo;layout&rsquo; component
+
+home.blade.php:">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/laravel-notes/2.laravel-components/">
   <meta property="og:site_name" content="Laravel Notes">
   <meta property="og:title" content="2. Laravel Components">
+  <meta property="og:description" content="Laravel Components # A Component can be defined in the resources/views/components directory.
+components/layout.blade.php:
+&lt;!DOCTYPE html&gt; &lt;html lang=&#34;en&#34;&gt; &lt;head&gt; &lt;meta charset=&#34;UTF-8&#34;&gt; &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&gt; &lt;title&gt;Home Page&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;nav&gt; &lt;a href=&#34;/&#34;&gt;Home&lt;/a&gt; &lt;a href=&#34;/about&#34;&gt;About&lt;/a&gt; &lt;a href=&#34;/contact&#34;&gt;Contact&lt;/a&gt; &lt;/nav&gt; {{ $slot }} &lt;/body&gt; &lt;/html&gt; This Component can be referenced in other blade files with the &lt;x- html tag with the file name appended in the end (&lt;x-layout&gt;...&lt;/x-layout&gt;). Any content inside the &lt;x-layout&gt; tag will be slotted inside the ’layout’ component home.blade.php:">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 <title>2. Laravel Components | Laravel Notes</title>
@@ -17,7 +46,7 @@
 <link rel="canonical" href="http://localhost:1313/laravel-notes/2.laravel-components/">
 <link rel="stylesheet" href="/laravel-notes/book.min.27c601ff251cc5c9796bb272aace960013cf351d0c28a7e1301487b32d4800ee.css" integrity="sha256-J8YB/yUcxcl5a7Jyqs6WABPPNR0MKKfhMBSHsy1IAO4=" crossorigin="anonymous">
   <script defer src="/laravel-notes/fuse.min.js"></script>
-  <script defer src="/laravel-notes/en.search.min.a209de31869337956a4038efc22b51bd6b0c36a3b8b1cb2277ab9874e33f600f.js" integrity="sha256-ogneMYaTN5VqQDjvwitRvWsMNqO4scsid6uYdOM/YA8=" crossorigin="anonymous"></script>
+  <script defer src="/laravel-notes/en.search.min.b8b3dc810a5e4eb30c119fe076373a71eb2848ed1ccd287bbe00850c57428049.js" integrity="sha256-uLPcgQpeTrMMEZ/gdjc6cesoSO0czSh7vgCFDFdCgEk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="http://localhost:1313/laravel-notes/2.laravel-components/index.xml" title="Laravel Notes" />
 <!--
 Made with Book Theme
@@ -34,7 +63,7 @@ https://github.com/alex-shpak/hugo-book
         
   <nav>
 <h2 class="book-brand">
-  <a class="flex align-center" href="/laravel-notes/"><span>Laravel Notes</span>
+  <a class="flex align-center" href=""><span>Laravel Notes</span>
   </a>
 </h2>
 
@@ -72,7 +101,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <span>2. Laravel Components</span>
+    <a href="/laravel-notes/2.laravel-components/" class="active">2. Laravel Components</a>
   
 
           
@@ -150,7 +179,17 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#named-slots">Named Slots</a></li>
+      </ul>
+    </li>
+    <li><a href="#attributes">Attributes</a></li>
+    <li><a href="#props">Props</a></li>
+  </ul>
+</nav>
 
 
 
@@ -161,7 +200,113 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown book-article"></article>
+  <article class="markdown book-article"><h1 id="laravel-components">
+  Laravel Components
+  <a class="anchor" href="#laravel-components">#</a>
+</h1>
+<p>A <em>Component</em> can be defined in the <code>resources/views/components</code> directory.</p>
+<p><code>components/layout.blade.php</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;Home Page&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">nav</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/&#34;</span>&gt;Home&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/about&#34;</span>&gt;About&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contact&#34;</span>&gt;Contact&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">nav</span>&gt;
+</span></span><span style="display:flex;"><span>    {{ $slot }}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><ul>
+<li>This <em>Component</em> can be referenced in other <em>blade</em> files with the <code>&lt;x-</code> html tag with the file name appended in the end (<code>&lt;x-layout&gt;...&lt;/x-layout&gt;</code>).</li>
+<li>Any content inside the <code>&lt;x-layout&gt;</code> tag will be slotted inside the &rsquo;layout&rsquo; <em>component</em></li>
+</ul>
+<p><code>home.blade.php</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">x-layout</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h1</span>&gt;Home Page&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">x-layout</span>&gt;
+</span></span></code></pre></div><h3 id="named-slots">
+  Named Slots
+  <a class="anchor" href="#named-slots">#</a>
+</h3>
+<p>A <em>Component</em> can use multiple <code>$slot</code> variables with named slots.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h1</span>&gt;{{ $heading }}&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">nav</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/&#34;</span>&gt;Home&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/about&#34;</span>&gt;About&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contact&#34;</span>&gt;Contact&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">nav</span>&gt;
+</span></span><span style="display:flex;"><span>    {{ $slot }}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><ul>
+<li>A named slot can be used with the <code>&lt;x-slot:</code> tag with the corresponding variable name appended next to the &lsquo;:&rsquo; (<code>&lt;x-slot:heading&gt;...&lt;/x-slot:heading&gt;</code>).</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">x-layout</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">x-slot:heading</span>&gt;Home Page&lt;/<span style="color:#f92672">x-slot:heading</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">x-layout</span>&gt;
+</span></span></code></pre></div><h2 id="attributes">
+  Attributes
+  <a class="anchor" href="#attributes">#</a>
+</h2>
+<p>HTML attributes such as <code>id</code>, <code>class</code>, &hellip; can be used inside a <em>blade</em> component with the <code>$attributes</code> object.</p>
+<p><code>nav-link.blade.php</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">a</span> {{ $attributes }}<span style="color:#f92672">&gt;</span>{{ $slot }}<span style="color:#f92672">&lt;/</span><span style="color:#a6e22e">a</span><span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p><code>layout.blade.php</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">nav</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">x-nav-link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/&#34;</span>&gt;Home&lt;/<span style="color:#f92672">x-nav-link</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">x-nav-link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/about&#34;</span>&gt;About&lt;/<span style="color:#f92672">x-nav-link</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">x-nav-link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contact&#34;</span>&gt;Contact&lt;/<span style="color:#f92672">x-nav-link</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">nav</span>&gt;
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><ul>
+<li>Since <code>$attributes</code> is an <em>object</em> different <em>methods</em> can be called on it.</li>
+<li>One such <em>method</em> is &lsquo;merge&rsquo; which can be used to define some sensible default for the <em>component</em>.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">a</span> {{ $attributes<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">merge</span>([<span style="color:#e6db74">&#39;class&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;text-blue-500 hover:text-blue-300&#39;</span>]) }}<span style="color:#f92672">&gt;</span>{{ $slot }}<span style="color:#f92672">&lt;/</span><span style="color:#a6e22e">a</span><span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><h2 id="props">
+  Props
+  <a class="anchor" href="#props">#</a>
+</h2>
+<p>A <em>Prop</em> can be used to run code inside a component conditionally.</p>
+<p><code>layout.blade.php</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">nav</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">x-nav-link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#a6e22e">:active</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;true&#34;</span>&gt;Home&lt;/<span style="color:#f92672">x-nav-link</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">x-nav-link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/about&#34;</span> <span style="color:#a6e22e">:active</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;false&#34;</span>&gt;About&lt;/<span style="color:#f92672">x-nav-link</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">x-nav-link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contact&#34;</span> <span style="color:#a6e22e">:active</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;false&#34;</span>&gt;Contact&lt;/<span style="color:#f92672">x-nav-link</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">nav</span>&gt;
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p><code>nav-link.blade.php</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">@</span><span style="color:#a6e22e">props</span>([<span style="color:#e6db74">&#39;active&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">false</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">a</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ </span><span style="color:#e6db74">$active</span><span style="color:#e6db74"> ? bg-gray-900 : bg-gray-700 }}&#34;</span> {{ $attributes }}<span style="color:#f92672">&gt;</span>{{ $slot }}<span style="color:#f92672">&lt;/</span><span style="color:#a6e22e">a</span><span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><ul>
+<li>A <em>prop</em> can be defined with the <code>@props()</code> blade directive.</li>
+<li>&lsquo;:&rsquo; can be used with the <em>prop</em> to define how the value will be passed down.
+<ul>
+<li><code>active=&quot;true&quot;</code> - value will be interpreted as the string <code>&quot;true&quot;</code></li>
+<li><code>:active=&quot;true&quot;</code> - value will be interpreted as the boolean <code>true</code></li>
+</ul>
+</li>
+<li><em>Function</em> calls can be also used as inside a <em>prop</em> and the return value will be passed down.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">nav</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">x-nav-link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#a6e22e">:active</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ request-&gt;is(&#39;/&#39;) }}&#34;</span>&gt;Home&lt;/<span style="color:#f92672">x-nav-link</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">x-nav-link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/about&#34;</span> <span style="color:#a6e22e">:active</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ request-&gt;is(&#39;/about&#39;) }}&#34;</span>&gt;About&lt;/<span style="color:#f92672">x-nav-link</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">x-nav-link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contact&#34;</span> <span style="color:#a6e22e">:active</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ request-&gt;is(&#39;/contact&#39;) }}&#34;</span>&gt;Contact&lt;/<span style="color:#f92672">x-nav-link</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">nav</span>&gt;
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div></article>
  
       
 
@@ -186,6 +331,10 @@ https://github.com/alex-shpak/hugo-book
 
       
   
+  <div class="book-comments">
+
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -196,7 +345,17 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#named-slots">Named Slots</a></li>
+      </ul>
+    </li>
+    <li><a href="#attributes">Attributes</a></li>
+    <li><a href="#props">Props</a></li>
+  </ul>
+</nav>
 
 
  
