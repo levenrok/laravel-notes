@@ -57,14 +57,20 @@ stateDiagram-v2
         note right of /contact
             return &#39;contact.blade.php&#39; view on GET request to &#39;/contact&#39;
         end note
-">
+
+
+
+  Passing Data
+  #
+
+Data can be passed to a view by passing it as the second argument as an array to the &lsquo;view&rsquo; function.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/laravel-notes/1.views-and-routes/">
   <meta property="og:site_name" content="Laravel Notes">
   <meta property="og:title" content="1. Views and Routes">
   <meta property="og:description" content="Views and Routes # Routes are defined in the routes/web.php file.
-&lt;?php use Illuminate\Support\Facades\Route; Route::get(&#39;/&#39;, function() { return view(&#39;welcome&#39;); }); Above code tells Laravel to run the code defined inside the function if the user visits the ’/’ page (listens for a GET request). The function here returns a view called ‘welcome’ defined in resources/views directory as a blade component (welcome.blade.php). &lt;?php use Illuminate\Support\Facades\Route; Route::get(&#39;/&#39;, function() { return view(&#39;welcome&#39;); }); Route::get(&#39;/about&#39;, function() { return view(&#39;about&#39;); }); Route::get(&#39;/contact&#39;, function() { return view(&#39;contact&#39;); }); stateDiagram-v2 /: get(&#39;/&#39;, function() {...}) note right of / return &#39;welcome.blade.php&#39; view on GET request to &#39;/&#39; end note /about: get(&#39;/about&#39;, function() {...}) note right of /about return &#39;about.blade.php&#39; view on GET request to &#39;/about&#39; end note /contact: get(&#39;/contact&#39;, function() {...}) note right of /contact return &#39;contact.blade.php&#39; view on GET request to &#39;/contact&#39; end note">
+&lt;?php use Illuminate\Support\Facades\Route; Route::get(&#39;/&#39;, function() { return view(&#39;welcome&#39;); }); Above code tells Laravel to run the code defined inside the function if the user visits the ’/’ page (listens for a GET request). The function here returns a view called ‘welcome’ defined in resources/views directory as a blade component (welcome.blade.php). &lt;?php use Illuminate\Support\Facades\Route; Route::get(&#39;/&#39;, function() { return view(&#39;welcome&#39;); }); Route::get(&#39;/about&#39;, function() { return view(&#39;about&#39;); }); Route::get(&#39;/contact&#39;, function() { return view(&#39;contact&#39;); }); stateDiagram-v2 /: get(&#39;/&#39;, function() {...}) note right of / return &#39;welcome.blade.php&#39; view on GET request to &#39;/&#39; end note /about: get(&#39;/about&#39;, function() {...}) note right of /about return &#39;about.blade.php&#39; view on GET request to &#39;/about&#39; end note /contact: get(&#39;/contact&#39;, function() {...}) note right of /contact return &#39;contact.blade.php&#39; view on GET request to &#39;/contact&#39; end note Passing Data # Data can be passed to a view by passing it as the second argument as an array to the ‘view’ function.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 <title>1. Views and Routes | Laravel Notes</title>
@@ -73,7 +79,7 @@ stateDiagram-v2
 <link rel="canonical" href="http://localhost:1313/laravel-notes/1.views-and-routes/">
 <link rel="stylesheet" href="/laravel-notes/book.min.27c601ff251cc5c9796bb272aace960013cf351d0c28a7e1301487b32d4800ee.css" integrity="sha256-J8YB/yUcxcl5a7Jyqs6WABPPNR0MKKfhMBSHsy1IAO4=" crossorigin="anonymous">
   <script defer src="/laravel-notes/fuse.min.js"></script>
-  <script defer src="/laravel-notes/en.search.min.b8b3dc810a5e4eb30c119fe076373a71eb2848ed1ccd287bbe00850c57428049.js" integrity="sha256-uLPcgQpeTrMMEZ/gdjc6cesoSO0czSh7vgCFDFdCgEk=" crossorigin="anonymous"></script>
+  <script defer src="/laravel-notes/en.search.min.bf33e1ca47d306319fb480b9d83987e7279dc344737dc31ce9d612833caa0050.js" integrity="sha256-vzPhykfTBjGftIC52DmH5yedw0RzfcMc6dYSgzyqAFA=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="http://localhost:1313/laravel-notes/1.views-and-routes/index.xml" title="Laravel Notes" />
 <!--
 Made with Book Theme
@@ -90,7 +96,7 @@ https://github.com/alex-shpak/hugo-book
         
   <nav>
 <h2 class="book-brand">
-  <a class="flex align-center" href=""><span>Laravel Notes</span>
+  <a class="flex align-center" href="/laravel-notes/"><span>Laravel Notes</span>
   </a>
 </h2>
 
@@ -206,7 +212,12 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#passing-data">Passing Data</a></li>
+    <li><a href="#wildcard-routes">Wildcard Routes</a></li>
+  </ul>
+</nav>
 
 
 
@@ -279,6 +290,89 @@ stateDiagram-v2
         end note
 </pre>
 
+<h2 id="passing-data">
+  Passing Data
+  <a class="anchor" href="#passing-data">#</a>
+</h2>
+<p>Data can be passed to a <em>view</em> by passing it as the second argument as an <em>array</em> to the &lsquo;view&rsquo; <em>function</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\Facades\Route</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Route</span><span style="color:#f92672">::</span><span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/jobs&#39;</span>, <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">view</span>(<span style="color:#e6db74">&#39;jobs&#39;</span>, [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;jobs&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>            [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;title&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Director&#39;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;salary&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;$50,000&#39;</span>,
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;title&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Programmer&#39;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;salary&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;$10,000&#39;</span>,
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;title&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Teacher&#39;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;salary&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;$40,000&#39;</span>,
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>    ]);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span></code></pre></div><ul>
+<li>Data that are passed can be accessed in a <em>blade</em> file as a varible with the same name as the &lsquo;key&rsquo; name.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">@</span><span style="color:#66d9ef">foreach</span> ($jobs <span style="color:#66d9ef">as</span> $job)
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">li</span><span style="color:#f92672">&gt;</span>{{ $job[<span style="color:#e6db74">&#39;title&#39;</span>] }}<span style="color:#f92672">:</span> <span style="color:#a6e22e">Pays</span> {{ $job[<span style="color:#e6db74">&#39;salary&#39;</span>] }}<span style="color:#f92672">&lt;/</span><span style="color:#a6e22e">li</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">@</span><span style="color:#66d9ef">endforeach</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span></code></pre></div><h2 id="wildcard-routes">
+  Wildcard Routes
+  <a class="anchor" href="#wildcard-routes">#</a>
+</h2>
+<p>A Wildcard Route is a route that matches any URL pattern, often used to catch unknown pages or define dynamic routes that accept a variable.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\Arr</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\Facades\Route</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Route</span><span style="color:#f92672">::</span><span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/jobs/{id}&#39;</span>, <span style="color:#66d9ef">function</span>($id) {
+</span></span><span style="display:flex;"><span>    $jobs <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>            [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;id&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;title&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Director&#39;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;salary&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;$50,000&#39;</span>,
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;id&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;title&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Programmer&#39;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;salary&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;$10,000&#39;</span>,
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;id&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;title&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Teacher&#39;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;salary&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;$40,000&#39;</span>,
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>    ];
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Arr</span><span style="color:#f92672">::</span><span style="color:#a6e22e">first</span>($jobs, <span style="color:#a6e22e">fn</span>($job) <span style="color:#f92672">=&gt;</span> $job[<span style="color:#e6db74">&#39;id&#39;</span>] <span style="color:#f92672">==</span> $job);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">view</span>(<span style="color:#e6db74">&#39;job&#39;</span>, [<span style="color:#e6db74">&#39;job&#39;</span> <span style="color:#f92672">=&gt;</span> $job])
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>A Wildcard Route can be defined with the &lsquo;{}&rsquo; appended to the route name.</p>
+</li>
+<li>
+<p>A Route Varible is passed inside &lsquo;{}&rsquo; that can be used to run conditional code (<code>{id}</code>).</p>
+<ul>
+<li>This code passes the corresponding &lsquo;job&rsquo; to the <em>view</em> by iteratoring over every element in the <em>array</em> and checking if the <strong>route variable</strong> matches the <strong>id</strong> of the &lsquo;job&rsquo;</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Arr</span><span style="color:#f92672">::</span><span style="color:#a6e22e">first</span>($jobs, <span style="color:#a6e22e">fn</span>($job) <span style="color:#f92672">=&gt;</span> $job[<span style="color:#e6db74">&#39;id&#39;</span>] <span style="color:#f92672">==</span> $job);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">view</span>(<span style="color:#e6db74">&#39;job&#39;</span>, [<span style="color:#e6db74">&#39;job&#39;</span> <span style="color:#f92672">=&gt;</span> $job])
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span></code></pre></div></li>
+</ul>
 </article>
  
       
@@ -318,7 +412,12 @@ stateDiagram-v2
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#passing-data">Passing Data</a></li>
+    <li><a href="#wildcard-routes">Wildcard Routes</a></li>
+  </ul>
+</nav>
 
 
  
