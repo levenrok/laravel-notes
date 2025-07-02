@@ -46,7 +46,7 @@ components/layout.blade.php:
 <link rel="canonical" href="http://localhost:1313/laravel-notes/2.laravel-components/">
 <link rel="stylesheet" href="/laravel-notes/book.min.27c601ff251cc5c9796bb272aace960013cf351d0c28a7e1301487b32d4800ee.css" integrity="sha256-J8YB/yUcxcl5a7Jyqs6WABPPNR0MKKfhMBSHsy1IAO4=" crossorigin="anonymous">
   <script defer src="/laravel-notes/fuse.min.js"></script>
-  <script defer src="/laravel-notes/en.search.min.bf33e1ca47d306319fb480b9d83987e7279dc344737dc31ce9d612833caa0050.js" integrity="sha256-vzPhykfTBjGftIC52DmH5yedw0RzfcMc6dYSgzyqAFA=" crossorigin="anonymous"></script>
+  <script defer src="/laravel-notes/en.search.min.dd8c3333805678d22645ba82d2eb614b0c776fa60fc5e4aa36531bb923305f39.js" integrity="sha256-3YwzM4BWeNImRbqC0uthSwx3b6YPxeSqNlMbuSMwXzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="http://localhost:1313/laravel-notes/2.laravel-components/index.xml" title="Laravel Notes" />
 <!--
 Made with Book Theme
@@ -301,9 +301,9 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>...
 </span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">nav</span>&gt;
-</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">x-nav-link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#a6e22e">:active</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ request-&gt;is(&#39;/&#39;) }}&#34;</span>&gt;Home&lt;/<span style="color:#f92672">x-nav-link</span>&gt;
-</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">x-nav-link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/about&#34;</span> <span style="color:#a6e22e">:active</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ request-&gt;is(&#39;/about&#39;) }}&#34;</span>&gt;About&lt;/<span style="color:#f92672">x-nav-link</span>&gt;
-</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">x-nav-link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contact&#34;</span> <span style="color:#a6e22e">:active</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ request-&gt;is(&#39;/contact&#39;) }}&#34;</span>&gt;Contact&lt;/<span style="color:#f92672">x-nav-link</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">x-nav-link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#a6e22e">:active</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;request()-&gt;is(&#39;/&#39;)&#34;</span>&gt;Home&lt;/<span style="color:#f92672">x-nav-link</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">x-nav-link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/about&#34;</span> <span style="color:#a6e22e">:active</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;request()-&gt;is(&#39;/about&#39;)&#34;</span>&gt;About&lt;/<span style="color:#f92672">x-nav-link</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">x-nav-link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contact&#34;</span> <span style="color:#a6e22e">:active</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;request()-&gt;is(&#39;/contact&#39;)&#34;</span>&gt;Contact&lt;/<span style="color:#f92672">x-nav-link</span>&gt;
 </span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">nav</span>&gt;
 </span></span><span style="display:flex;"><span>...
 </span></span></code></pre></div></article>
