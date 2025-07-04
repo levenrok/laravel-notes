@@ -8,6 +8,8 @@ title = '2. Laravel Components'
 
 A *Component* can be defined in the `resources/views/components` directory.
 
+## Definition
+
 `components/layout.blade.php`:
 
 ```html
@@ -67,7 +69,7 @@ A *Component* can use multiple `$slot` variables with named slots.
 </x-layout>
 ```
 
-## Attributes
+### Attributes
 
 HTML attributes such as `id`, `class`, ... can be used inside a *blade* component with the `$attributes` object.
 
@@ -96,7 +98,7 @@ HTML attributes such as `id`, `class`, ... can be used inside a *blade* componen
 <a {{ $attributes->merge(['class' => 'text-blue-500 hover:text-blue-300']) }}>{{ $slot }}</a>
 ```
 
-## Props
+### Props
 
 A *Prop* can be used to run code inside a component conditionally.
 

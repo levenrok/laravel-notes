@@ -8,6 +8,10 @@
   #
 
 Routes are defined in the routes/web.php file.
+
+  &lsquo;GET&rsquo; Routes
+  #
+
 &lt;?php
 
 use Illuminate\Support\Facades\Route;
@@ -70,7 +74,7 @@ Data can be passed to a view by passing it as the second argument as an array to
   <meta property="og:site_name" content="Laravel Notes">
   <meta property="og:title" content="1. Views and Routes">
   <meta property="og:description" content="Views and Routes # Routes are defined in the routes/web.php file.
-&lt;?php use Illuminate\Support\Facades\Route; Route::get(&#39;/&#39;, function() { return view(&#39;welcome&#39;); }); Above code tells Laravel to run the code defined inside the function if the user visits the ’/’ page (listens for a GET request). The function here returns a view called ‘welcome’ defined in resources/views directory as a blade component (welcome.blade.php). &lt;?php use Illuminate\Support\Facades\Route; Route::get(&#39;/&#39;, function() { return view(&#39;welcome&#39;); }); Route::get(&#39;/about&#39;, function() { return view(&#39;about&#39;); }); Route::get(&#39;/contact&#39;, function() { return view(&#39;contact&#39;); }); stateDiagram-v2 /: get(&#39;/&#39;, function() {...}) note right of / return &#39;welcome.blade.php&#39; view on GET request to &#39;/&#39; end note /about: get(&#39;/about&#39;, function() {...}) note right of /about return &#39;about.blade.php&#39; view on GET request to &#39;/about&#39; end note /contact: get(&#39;/contact&#39;, function() {...}) note right of /contact return &#39;contact.blade.php&#39; view on GET request to &#39;/contact&#39; end note Passing Data # Data can be passed to a view by passing it as the second argument as an array to the ‘view’ function.">
+‘GET’ Routes # &lt;?php use Illuminate\Support\Facades\Route; Route::get(&#39;/&#39;, function() { return view(&#39;welcome&#39;); }); Above code tells Laravel to run the code defined inside the function if the user visits the ’/’ page (listens for a GET request). The function here returns a view called ‘welcome’ defined in resources/views directory as a blade component (welcome.blade.php). &lt;?php use Illuminate\Support\Facades\Route; Route::get(&#39;/&#39;, function() { return view(&#39;welcome&#39;); }); Route::get(&#39;/about&#39;, function() { return view(&#39;about&#39;); }); Route::get(&#39;/contact&#39;, function() { return view(&#39;contact&#39;); }); stateDiagram-v2 /: get(&#39;/&#39;, function() {...}) note right of / return &#39;welcome.blade.php&#39; view on GET request to &#39;/&#39; end note /about: get(&#39;/about&#39;, function() {...}) note right of /about return &#39;about.blade.php&#39; view on GET request to &#39;/about&#39; end note /contact: get(&#39;/contact&#39;, function() {...}) note right of /contact return &#39;contact.blade.php&#39; view on GET request to &#39;/contact&#39; end note Passing Data # Data can be passed to a view by passing it as the second argument as an array to the ‘view’ function.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 <title>1. Views and Routes | Laravel Notes</title>
@@ -126,6 +130,24 @@ https://github.com/alex-shpak/hugo-book
 
   
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>3. Models</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
     
       
         <li>
@@ -214,6 +236,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#get-routes">&lsquo;<code>GET</code>&rsquo; Routes</a></li>
     <li><a href="#passing-data">Passing Data</a></li>
     <li><a href="#wildcard-routes">Wildcard Routes</a></li>
   </ul>
@@ -233,6 +256,10 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#views-and-routes">#</a>
 </h1>
 <p>Routes are defined in the <code>routes/web.php</code> file.</p>
+<h2 id="get-routes">
+  &lsquo;<code>GET</code>&rsquo; Routes
+  <a class="anchor" href="#get-routes">#</a>
+</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\Facades\Route</span>;
@@ -414,6 +441,7 @@ stateDiagram-v2
   
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#get-routes">&lsquo;<code>GET</code>&rsquo; Routes</a></li>
     <li><a href="#passing-data">Passing Data</a></li>
     <li><a href="#wildcard-routes">Wildcard Routes</a></li>
   </ul>

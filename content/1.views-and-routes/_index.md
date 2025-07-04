@@ -8,6 +8,8 @@ title = '1. Views and Routes'
 
 Routes are defined in the `routes/web.php` file.
 
+## '`GET`' Routes
+
 ```php
 <?php
 
