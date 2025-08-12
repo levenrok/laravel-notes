@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/laravel-notes/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/laravel-notes/" rel="alternate" type="text/html" /><updated>2025-08-12T08:08:28+05:30</updated><id>http://localhost:4000/laravel-notes/feed.xml</id><title type="html">Laravel Notes</title><subtitle>Helpful Notes for the PHP Laravel Framework
+</subtitle><author><name>Leven Rochana</name></author><entry><title type="html">Laravel Components</title><link href="http://localhost:4000/laravel-notes/2025-06-30-laravel-components.html" rel="alternate" type="text/html" title="Laravel Components" /><published>2025-06-30T19:31:02+05:30</published><updated>2025-06-30T19:31:02+05:30</updated><id>http://localhost:4000/laravel-notes/laravel-components</id><content type="html" xml:base="http://localhost:4000/laravel-notes/2025-06-30-laravel-components.html"><![CDATA[<p>A <em>Component</em> can be defined in the <code class="language-plaintext highlighter-rouge">resources/views/components</code> directory.</p>
+
+<h2 id="definition">Definition</h2>
+
+<p><code class="language-plaintext highlighter-rouge">components/layout.blade.php</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Home Page<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;nav&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/about"</span><span class="nt">&gt;</span>About<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/contact"</span><span class="nt">&gt;</span>Contact<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/nav&gt;</span>
+    
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>This <em>Component</em> can be referenced in other <em>blade</em> files with the <code class="language-plaintext highlighter-rouge">&lt;x-</code> html tag with the file name appended in the end (<code class="language-plaintext highlighter-rouge">&lt;x-layout&gt;...&lt;/x-layout&gt;</code>).</li>
+  <li>Any content inside the <code class="language-plaintext highlighter-rouge">&lt;x-layout&gt;</code> tag will be slotted inside the ‘layout’ <em>component</em></li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">home.blade.php</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;x-layout&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Home Page<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;/x-layout&gt;</span>
+</code></pre></div></div>
+
+<h3 id="named-slots">Named Slots</h3>
+
+<p>A <em>Component</em> can use multiple <code class="language-plaintext highlighter-rouge">$slot</code> variables with named slots.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;&lt;/h1&gt;</span>
+    <span class="nt">&lt;nav&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/about"</span><span class="nt">&gt;</span>About<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/contact"</span><span class="nt">&gt;</span>Contact<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/nav&gt;</span>
+    
+<span class="nt">&lt;/body&gt;</span>
+...
+</code></pre></div></div>
+
+<ul>
+  <li>A named slot can be used with the <code class="language-plaintext highlighter-rouge">&lt;x-slot:</code> tag with the corresponding variable name appended next to the ‘:’ (<code class="language-plaintext highlighter-rouge">&lt;x-slot:heading&gt;...&lt;/x-slot:heading&gt;</code>).</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;x-layout&gt;</span>
+    <span class="nt">&lt;x-slot:heading&gt;</span>Home Page<span class="nt">&lt;/x-slot:heading&gt;</span>
+<span class="nt">&lt;/x-layout&gt;</span>
+</code></pre></div></div>
+
+<h3 id="attributes">Attributes</h3>
+
+<p>HTML attributes such as <code class="language-plaintext highlighter-rouge">id</code>, <code class="language-plaintext highlighter-rouge">class</code>, … can be used inside a <em>blade</em> component with the <code class="language-plaintext highlighter-rouge">$attributes</code> object.</p>
+
+<p><code class="language-plaintext highlighter-rouge">nav-link.blade.php</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="nt">&gt;&lt;/a&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">layout.blade.php</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+    <span class="nt">&lt;nav&gt;</span>
+        <span class="nt">&lt;x-nav-link</span> <span class="na">href=</span><span class="s">"/"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/x-nav-link&gt;</span>
+        <span class="nt">&lt;x-nav-link</span> <span class="na">href=</span><span class="s">"/about"</span><span class="nt">&gt;</span>About<span class="nt">&lt;/x-nav-link&gt;</span>
+        <span class="nt">&lt;x-nav-link</span> <span class="na">href=</span><span class="s">"/contact"</span><span class="nt">&gt;</span>Contact<span class="nt">&lt;/x-nav-link&gt;</span>
+    <span class="nt">&lt;/nav&gt;</span>
+...
+</code></pre></div></div>
+
+<ul>
+  <li>Since <code class="language-plaintext highlighter-rouge">$attributes</code> is an <em>object</em> different <em>methods</em> can be called on it.</li>
+  <li>One such <em>method</em> is ‘merge’ which can be used to define some sensible default for the <em>component</em>.</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="nt">&gt;&lt;/a&gt;</span>
+</code></pre></div></div>
+
+<h3 id="props">Props</h3>
+
+<p>A <em>Prop</em> can be used to run code inside a component conditionally.</p>
+
+<p><code class="language-plaintext highlighter-rouge">layout.blade.php</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+    <span class="nt">&lt;nav&gt;</span>
+        <span class="nt">&lt;x-nav-link</span> <span class="na">href=</span><span class="s">"/"</span> <span class="na">:active=</span><span class="s">"true"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/x-nav-link&gt;</span>
+        <span class="nt">&lt;x-nav-link</span> <span class="na">href=</span><span class="s">"/about"</span> <span class="na">:active=</span><span class="s">"false"</span><span class="nt">&gt;</span>About<span class="nt">&lt;/x-nav-link&gt;</span>
+        <span class="nt">&lt;x-nav-link</span> <span class="na">href=</span><span class="s">"/contact"</span> <span class="na">:active=</span><span class="s">"false"</span><span class="nt">&gt;</span>Contact<span class="nt">&lt;/x-nav-link&gt;</span>
+    <span class="nt">&lt;/nav&gt;</span>
+...
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">nav-link.blade.php</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="nf">props</span><span class="p">([</span><span class="s1">'active'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">])</span>
+
+<span class="o">&lt;</span><span class="n">a</span> <span class="n">class</span><span class="o">=</span><span class="s2">""</span> <span class="o">&gt;&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>A <em>prop</em> can be defined with the <code class="language-plaintext highlighter-rouge">@props()</code> blade directive.</li>
+  <li>’:’ can be used with the <em>prop</em> to define how the value will be passed down.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">active="true"</code> - value will be interpreted as the string <code class="language-plaintext highlighter-rouge">"true"</code></li>
+      <li><code class="language-plaintext highlighter-rouge">:active="true"</code> - value will be interpreted as the boolean <code class="language-plaintext highlighter-rouge">true</code></li>
+    </ul>
+  </li>
+  <li><em>Function</em> calls can be also used as inside a <em>prop</em> and the return value will be passed down.</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+    <span class="nt">&lt;nav&gt;</span>
+        <span class="nt">&lt;x-nav-link</span> <span class="na">href=</span><span class="s">"/"</span> <span class="na">:active=</span><span class="s">"request()-&gt;is('/')"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/x-nav-link&gt;</span>
+        <span class="nt">&lt;x-nav-link</span> <span class="na">href=</span><span class="s">"/about"</span> <span class="na">:active=</span><span class="s">"request()-&gt;is('/about')"</span><span class="nt">&gt;</span>About<span class="nt">&lt;/x-nav-link&gt;</span>
+        <span class="nt">&lt;x-nav-link</span> <span class="na">href=</span><span class="s">"/contact"</span> <span class="na">:active=</span><span class="s">"request()-&gt;is('/contact')"</span><span class="nt">&gt;</span>Contact<span class="nt">&lt;/x-nav-link&gt;</span>
+    <span class="nt">&lt;/nav&gt;</span>
+...
+</code></pre></div></div>]]></content><author><name>Leven Rochana</name></author><summary type="html"><![CDATA[A Component can be defined in the resources/views/components directory.]]></summary></entry><entry><title type="html">Views and Routes</title><link href="http://localhost:4000/laravel-notes/2025-06-30-views-and-routes.html" rel="alternate" type="text/html" title="Views and Routes" /><published>2025-06-30T18:22:48+05:30</published><updated>2025-06-30T18:22:48+05:30</updated><id>http://localhost:4000/laravel-notes/views-and-routes</id><content type="html" xml:base="http://localhost:4000/laravel-notes/2025-06-30-views-and-routes.html"><![CDATA[<p>Routes are defined in the <code class="language-plaintext highlighter-rouge">routes/web.php</code> file.</p>
+
+<h2 id="get-routes">‘<code class="language-plaintext highlighter-rouge">GET</code>’ Routes</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="kn">use</span> <span class="nc">Illuminate\Support\Facades\Route</span><span class="p">;</span>
+
+<span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'welcome'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Above code tells Laravel to run the code defined inside the <code class="language-plaintext highlighter-rouge">function</code> if the user visits the <strong>’/’ page</strong> (listens for a <code class="language-plaintext highlighter-rouge">GET</code> request).</li>
+  <li>The <code class="language-plaintext highlighter-rouge">function</code> here returns a <em>view</em> called ‘welcome’ defined in <code class="language-plaintext highlighter-rouge">resources/views</code> directory as a <em>blade component</em> (<code class="language-plaintext highlighter-rouge">welcome.blade.php</code>).</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="kn">use</span> <span class="nc">Illuminate\Support\Facades\Route</span><span class="p">;</span>
+
+<span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'welcome'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/about'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'about'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/contact'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'contact'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="passing-data">Passing Data</h2>
+
+<p>Data can be passed to a <em>view</em> by passing it as the second argument as an <em>array</em> to the ‘view’ <em>function</em>.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="kn">use</span> <span class="nc">Illuminate\Support\Facades\Route</span><span class="p">;</span>
+
+<span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/jobs'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'jobs'</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">'jobs'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Director'</span><span class="p">,</span>
+                <span class="s1">'salary'</span> <span class="o">=&gt;</span> <span class="s1">'$50,000'</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Programmer'</span><span class="p">,</span>
+                <span class="s1">'salary'</span> <span class="o">=&gt;</span> <span class="s1">'$10,000'</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Teacher'</span><span class="p">,</span>
+                <span class="s1">'salary'</span> <span class="o">=&gt;</span> <span class="s1">'$40,000'</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">]</span>
+    <span class="p">]);</span>
+<span class="p">});</span>
+<span class="mf">...</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Data that are passed can be accessed in a <em>blade</em> file as a varible with the same name as the ‘key’ name.</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mf">...</span>
+    <span class="o">@</span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$jobs</span> <span class="k">as</span> <span class="nv">$job</span><span class="p">)</span>
+        <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;:</span> <span class="nc">Pays</span> <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+    <span class="o">@</span><span class="k">endforeach</span>
+<span class="mf">...</span>
+</code></pre></div></div>
+
+<p>## Wildcard Routes</p>
+
+<p>A Wildcard Route is a route that matches any URL pattern, often used to catch unknown pages or define dynamic routes that accept a variable.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="kn">use</span> <span class="nc">Illuminate\Support\Arr</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Support\Facades\Route</span><span class="p">;</span>
+
+<span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/jobs/{id}'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$jobs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Director'</span><span class="p">,</span>
+                <span class="s1">'salary'</span> <span class="o">=&gt;</span> <span class="s1">'$50,000'</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Programmer'</span><span class="p">,</span>
+                <span class="s1">'salary'</span> <span class="o">=&gt;</span> <span class="s1">'$10,000'</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+                <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Teacher'</span><span class="p">,</span>
+                <span class="s1">'salary'</span> <span class="o">=&gt;</span> <span class="s1">'$40,000'</span><span class="p">,</span>
+            <span class="p">],</span>
+    <span class="p">];</span>
+    <span class="nc">Arr</span><span class="o">::</span><span class="nf">first</span><span class="p">(</span><span class="nv">$jobs</span><span class="p">,</span> <span class="k">fn</span><span class="p">(</span><span class="nv">$job</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$job</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="o">==</span> <span class="nv">$job</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'job'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'job'</span> <span class="o">=&gt;</span> <span class="nv">$job</span><span class="p">])</span>
+<span class="p">});</span>
+<span class="mf">...</span>
+</code></pre></div></div>
+
+<ul>
+  <li>A Wildcard Route can be defined with the ‘{}’ appended to the route name.</li>
+  <li>A Route Varible is passed inside ‘{}’ that can be used to run conditional code (<code class="language-plaintext highlighter-rouge">{id}</code>).
+    <ul>
+      <li>This code passes the corresponding ‘job’ to the <em>view</em> by iteratoring over every element in the <em>array</em> and checking if the <strong>route variable</strong> matches the <strong>id</strong> of the ‘job’</li>
+    </ul>
+
+    <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="mf">...</span>
+     <span class="nc">Arr</span><span class="o">::</span><span class="nf">first</span><span class="p">(</span><span class="nv">$jobs</span><span class="p">,</span> <span class="k">fn</span><span class="p">(</span><span class="nv">$job</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$job</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="o">==</span> <span class="nv">$job</span><span class="p">);</span>
+     <span class="k">return</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'job'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'job'</span> <span class="o">=&gt;</span> <span class="nv">$job</span><span class="p">])</span>
+ <span class="mf">...</span>
+</code></pre></div>    </div>
+  </li>
+</ul>]]></content><author><name>Leven Rochana</name></author><summary type="html"><![CDATA[Routes are defined in the routes/web.php file.]]></summary></entry></feed>
